@@ -1,0 +1,1 @@
+{"version":3,"file":"copyright.js","sourceRoot":"","sources":["../../src/routes/copyright.ts"],"names":[],"mappings":"AAAA,OAAO,OAAO,MAAM,SAAS,CAAC;AAC9B,OAAO,EACL,gBAAgB,EAChB,WAAW,GACZ,MAAM,uCAAuC,CAAC;AAC/C,MAAM,eAAe,GAAG,OAAO,CAAC,MAAM,EAAE,CAAC;AAEzC,eAAe,CAAC,GAAG,CAAC,GAAG,EAAE,gBAAgB,CAAC,CAAC;AAC3C,eAAe,CAAC,GAAG,CAAC,SAAS,EAAE,WAAW,CAAC,CAAC;AAE5C,eAAe,eAAe,CAAC"}
