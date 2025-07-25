@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <>
       {/* Navigation Bar */}
-      <nav className='bg-white w-[5vw] h-[100vh] drop-shadow-sm py-2 absolute top-0 left-0 flex flex-col justify-between'>
+      <nav className='bg-white w-[5vw] h-[100vh] drop-shadow-sm py-2 fixed flex flex-col justify-between'>
         <div className='flex flex-col gap-4 items-center'>
           <Menu className='md:hidden w-6 h-6' />
           <Link href={"/"}>

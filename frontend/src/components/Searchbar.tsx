@@ -1,32 +1,35 @@
+"use client";
+
 import { useIPForm } from "@/contexts/IPFormContext";
 import { useIPTable } from "@/contexts/IPTableContext";
 import { axiosInstance } from "@/lib/axios";
 import { Search } from "lucide-react";
 import { useState } from "react";
 
-type IPListType = {
-  DiaryNo?: string;
-  ROCNo?: string;
-  TitleofWork?: string;
-  Applicant?: string;
-  Date?: string;
-  Category?: string;
-}[];
+// type IPListType = {
+//   id?: number;
+//   DiaryNo?: string;
+//   ROCNo?: string;
+//   TitleofWork?: string;
+//   Applicant?: string;
+//   Date?: string;
+//   Category?: string;
+// }[];
 
 type SearchbarProps = {
   ip: string;
-  tableData?: IPListType;
+  // tableData?: IPListType;
 };
 
-export default function Searchbar({ ip, tableData }: SearchbarProps) {
+export default function Searchbar({ ip }: SearchbarProps) {
   const [inputValue, setInputValue] = useState("");
   const { openIPForm } = useIPForm();
   const { setIPList } = useIPTable();
 
-  const fetchData = async () => {
+  const fetchData = async (searchInput: string) => {
     try {
       const res = await axiosInstance.get("/copyright/search", {
-        params: { inputValue: inputValue },
+        params: { inputValue: searchInput },
       });
       setIPList(res.data);
     } catch (err) {
@@ -46,8 +49,8 @@ export default function Searchbar({ ip, tableData }: SearchbarProps) {
             value={inputValue}
             onChange={(e) => {
               setInputValue(e.target.value);
-              if (inputValue.length > 2) {
-                fetchData();
+              if (e.target.value.length > 0) {
+                fetchData(e.target.value);
               }
             }}
           />

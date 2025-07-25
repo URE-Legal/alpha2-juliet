@@ -1,9 +1,11 @@
 import { formatDate } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 type IPTableProps = {
   statuses: string[];
   columns: string[];
   data: {
+    id?: number;
     DiaryNo?: string;
     ROCNo?: string;
     TitleofWork?: string;
@@ -14,6 +16,7 @@ type IPTableProps = {
 };
 
 export default function IPTable({ statuses, columns, data }: IPTableProps) {
+  const router = useRouter();
   const tableData = data;
   return (
     <>
@@ -43,7 +46,7 @@ export default function IPTable({ statuses, columns, data }: IPTableProps) {
             </label>
             <span className='ml-4'>1-20 of 1000</span>
           </div>
-          <table className='border-collapse w-full'>
+          <table className='w-full'>
             <tbody>
               <tr className='bg-black/20'>
                 <th>
@@ -54,12 +57,20 @@ export default function IPTable({ statuses, columns, data }: IPTableProps) {
                 ))}
               </tr>
               {tableData.map((appl, i) => (
-                <tr key={i} className='text-sm'>
+                <tr
+                  key={i}
+                  className='text-sm hover:cursor-pointer hover:bg-blue-300/10'
+                  onClick={() =>
+                    router.push(
+                      `/copyright/${encodeURIComponent(appl.id ?? "")}`
+                    )
+                  }
+                >
                   <td>
                     <input type='checkbox' />
                   </td>
-                  <td className='max-w-16'>{appl.DiaryNo}</td>
-                  <td className='max-w-16'>{appl.ROCNo}</td>
+                  <td>{appl.DiaryNo}</td>
+                  <td>{appl.ROCNo}</td>
                   <td className='max-w-36'>{appl.TitleofWork}</td>
                   <td className='max-w-36'>{appl.Applicant}</td>
                   <td>{formatDate(appl.Date ?? "")}</td>

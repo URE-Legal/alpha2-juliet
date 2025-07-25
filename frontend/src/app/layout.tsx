@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { IPFormProvider } from "@/contexts/IPFormContext";
-import Navbar from "@/components/Navbar";
-import { IPTableProvider } from "@/contexts/IPTableContext";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -24,14 +21,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${poppins.className} antialiased`}>
-        <div className='min-h-screen flex flex-col'>
-          <IPTableProvider>
-            <IPFormProvider>
-              <Navbar />
-              {children}
-            </IPFormProvider>
-          </IPTableProvider>
-        </div>
+        <div className='min-h-screen flex flex-col'>{children}</div>
       </body>
     </html>
   );

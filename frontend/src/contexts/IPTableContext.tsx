@@ -3,6 +3,7 @@
 import { createContext, useContext, useState } from "react";
 
 type IPListType = {
+  id?: number;
   DiaryNo?: string;
   ROCNo?: string;
   TitleofWork?: string;

@@ -48,9 +48,34 @@ export const searchROCNo = async (req, res) => {
         .json({ message: "No record found for this RoC No." });
     }
 
-    console.log(result);
     res.status(200).json(result);
   } catch (err) {
     console.error("Error searchROCNo controller:", err);
+  }
+};
+
+export const getCopyright = async (req, res) => {
+  try {
+    const copyrightID = Number(req.params.id);
+
+    if (!copyrightID) {
+      return res.status(400).json({ error: "Copyright ID is required" });
+    }
+
+    const result = await prisma.copyright.findFirst({
+      where: {
+        id: copyrightID,
+      },
+    });
+
+    if (!result) {
+      return res
+        .status(404)
+        .json({ message: "No record found for this copyright ID." });
+    }
+
+    res.status(200).json(result);
+  } catch (err) {
+    console.error("Error getCopyright controller:", err);
   }
 };
