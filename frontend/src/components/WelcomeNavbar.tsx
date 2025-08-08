@@ -52,26 +52,31 @@ const DropdownDetailList = [
     rhead: "FEATURES",
     loptions: [
       {
+        link: "corporate/enterprise-contract-management",
         icon: <FileText className='size-4' />,
         heading: "Contract Management",
         desc: "Simplify contract workflows with automated reminders",
       },
       {
+        link: "corporate/enterprise-legal-management",
         icon: <Gavel className='size-4' />,
         heading: "Litigation Management",
         desc: "Monitor company-wide litigation with workflow automation",
       },
       {
+        link: "corporate/enterprise-notice-management",
         icon: <FileClock className='size-4' />,
         heading: "Legal Notice Management",
         desc: "Manage enterprise legal notices using automated workflows",
       },
       {
+        link: "corporate/enterprise-ip-portfolio-management",
         icon: <Copyright className='size-4' />,
         heading: "IPR Management",
         desc: "AI tools to track and protect your valuable IP assets",
       },
       {
+        link: "corporate/enterprise-collection-management",
         icon: <CircleDollarSign className='size-4' />,
         heading: "Collections Management",
         desc: "Enhance your digital debt collection strategy",
@@ -86,21 +91,25 @@ const DropdownDetailList = [
     rhead: "FOR USERS",
     loptions: [
       {
+        link: "department-legal",
         icon: <Scale className='size-4' />,
         heading: "Legal",
         desc: "Enhance productivity through case tracking and alerts",
       },
       {
+        link: "department-hr",
         icon: <Users className='size-4' />,
         heading: "HR",
         desc: "Centralize employee data, automate policy compliance",
       },
       {
+        link: "department-finance",
         icon: <DollarSign className='size-4' />,
         heading: "Finance",
         desc: "Optimize budget and payments to gain full financial oversight",
       },
       {
+        link: "department-sales",
         icon: <BriefcaseBusiness className='size-4' />,
         heading: "Sales",
         desc: "Accelerate deals through our efficient e-signature workflow",
@@ -190,16 +199,27 @@ export default function WelcomeNavbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const closeAllDropdowns = () => {
+    setDropdowns({
+      products: false,
+      solutions: false,
+      company: false,
+      resources: false,
+    });
+  };
+
   return (
     <>
       <div className={`h-[77px] ${isFixed ? "block" : "hidden"}`} />
       <nav
-        className={`w-full transition-all duration-300 flex items-center justify-between px-6 py-4 bg-slate-300 ${
+        className={`w-full transition-all duration-300 flex items-center justify-between px-16 py-4 bg-slate-300 ${
           isFixed ? "fixed top-0 z-50 shadow-lg" : "relative"
         }`}
       >
         <div className='flex items-center space-x-16'>
-          <h2 className='font-bold text-gray-800'>URE IPR</h2>
+          <Link href={"/"}>
+            <h2 className='font-bold text-gray-800'>URE IPR</h2>
+          </Link>
           <div className='hidden md:flex space-x-6 text-gray-700 text-sm font-bold'>
             <button
               className='flex'
@@ -287,6 +307,7 @@ export default function WelcomeNavbar() {
           loptions={dropdownDetails.loptions}
           rsubhead={dropdownDetails.rhead}
           rdesc={dropdownDetails.rdesc}
+          closeDropdowns={closeAllDropdowns}
         />
       )}
     </>

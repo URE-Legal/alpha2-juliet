@@ -1,7 +1,9 @@
 import { JSX } from "react";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 type DropdownOptions = {
+  link?: string;
   icon?: JSX.Element;
   heading?: string;
   desc?: string;
@@ -13,23 +15,27 @@ export default function NavbarDropdown({
   loptions,
   rsubhead,
   rdesc,
+  closeDropdowns,
 }: {
   lhead?: string;
   rhead?: string;
   loptions?: DropdownOptions;
   rsubhead?: string;
   rdesc?: string;
+  closeDropdowns: () => void;
 }) {
   return (
-    <div className='flex gap-12 absolute top-[77px] px-36 py-8 z-50 bg-slate-100 shadow-sm'>
+    <div className='flex gap-12 fixed top-[77px] px-36 py-8 z-50 bg-slate-100 shadow-sm'>
       <div className='w-1/2'>
         <div className='uppercase text-blue-700 pb-2 border-b border-slate-300'>
           {lhead}
         </div>
         <div className='flex flex-wrap gap-4 mt-4'>
           {loptions?.map((option, index) => (
-            <div
+            <Link
               key={index}
+              href={`/${option.link}` || "/"}
+              onClick={closeDropdowns}
               className='w-[calc(50%-0.5rem)] hover:bg-slate-200 cursor-pointer p-2 rounded transition-all duration-100'
             >
               <div className='font-semibold flex items-center space-x-2 text-sm mb-1'>
@@ -37,7 +43,7 @@ export default function NavbarDropdown({
                 <div>{option.heading}</div>
               </div>
               <div className='pl-6 text-gray-500 text-sm'>{option.desc}</div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

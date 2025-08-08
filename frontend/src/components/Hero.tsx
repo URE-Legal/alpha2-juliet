@@ -11,7 +11,7 @@ export default function Hero() {
 
   return (
     <section
-      className={`bg-slate-300 text-center py-36 px-4 min-h-[calc(100vh-77px)] transform transition-all duration-500 ease-out ${
+      className={`bg-slate-300 text-center py-24 px-48 transform transition-all duration-500 ease-out ${
         mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       }`}
     >

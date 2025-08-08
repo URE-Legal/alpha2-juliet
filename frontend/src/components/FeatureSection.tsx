@@ -56,7 +56,13 @@ const texts = [
   },
 ];
 
-export default function FeatureSection() {
+export default function FeatureSection({
+  smhead,
+  lghead,
+}: {
+  smhead?: string;
+  lghead?: string;
+}) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -80,9 +86,11 @@ export default function FeatureSection() {
   return (
     <div className='px-16 py-12 bg-white'>
       <div className='text-center'>
-        <div className='text-lg text-blue-700'>Explore the Features</div>
+        <div className='text-lg text-blue-700'>
+          {smhead || "Explore the Features"}
+        </div>
         <h2 className='font-bold'>
-          Comprehensive Legal Solutions for Enterprise Scale
+          {lghead || "Comprehensive Legal Solutions for Enterprise Scale"}
         </h2>
       </div>
 
@@ -102,7 +110,7 @@ export default function FeatureSection() {
               className='min-w-full flex flex-col items-center justify-center text-lg font-medium text-gray-800 px-4'
             >
               <div className='text-center max-w-1/2'>
-                <h1>{text.heading}</h1>
+                <h2>{text.heading}</h2>
                 <p className='pb-4'>{text.desc}</p>
                 {text.points.map((_, index) => (
                   <p key={index} className='text-left'>
